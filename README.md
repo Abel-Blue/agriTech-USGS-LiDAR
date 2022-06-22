@@ -37,11 +37,11 @@
 
 ## Introduction
 
-<p>We are very interested in how water flows through a maize farm field. This knowledge will help us improve our research on new agricultural products being tested on farms.</p>
+> <p>We are very interested in how water flows through a maize farm field. This knowledge will help us improve our research on new agricultural products being tested on farms.</p>
+> <p>How much maize a field produces is very spatially variable. Even if the same farming practices, seeds and fertilizer are applied exactly the same by machinery over a field, there can be a very large harvest at one corner and a low harvest at another corner. We would like to be able to better understand which parts of the farm are likely to produce more or less maize, so that if we try a new fertilizer on part of this farm, we have more confidence that any differences in the maize harvest are due mostly to the new fertilizer changes, and not just random effects due to other environmental factors.</p>
+> <p>We are tasked to produce an easy to use, reliable and well designed python module that domain experts and data scientists can use to fetch, visualise, and transform publicly available satellite and LIDAR data. In particular, our code should interface with USGS 3DEP and fetch data using their API.</p>
 
-<p>How much maize a field produces is very spatially variable. Even if the same farming practices, seeds and fertilizer are applied exactly the same by machinery over a field, there can be a very large harvest at one corner and a low harvest at another corner. We would like to be able to better understand which parts of the farm are likely to produce more or less maize, so that if we try a new fertilizer on part of this farm, we have more confidence that any differences in the maize harvest are due mostly to the new fertilizer changes, and not just random effects due to other environmental factors.</p>
-
-<p>We are tasked to produce an easy to use, reliable and well designed python module that domain experts and data scientists can use to fetch, visualise, and transform publicly available satellite and LIDAR data. In particular, our code should interface with USGS 3DEP and fetch data using their API.</p>
+<hr>
 
 <!-- <img src="images/slide/3.png" name="">
 <img src="images/slide/4.png" name=""> -->
@@ -50,36 +50,36 @@
 
 ### [images](images):
 
-- `images/` the folder where all snapshot for the project are stored.
+- > `images/` the folder where all snapshot for the project are stored.
 
 ### [logs](logs):
 
-- `logs/` the folder where script logs are stored.
+- > `logs/` the folder where script logs are stored.
 
 ### [data](data):
 
-- `data/` the folder where the dataset files are stored.
+- > `data/` the folder where the dataset files are stored.
 
 ### [.github](.github):
 
-- `.github/`: the folder where github actions and unit-tests are integrated.
+- > `.github/`: the folder where github actions and unit-tests are integrated.
 
 ### [.vscode](.vscode):
 
-- `.vscode/`: the folder where local path are stored.
-  stored.
+- > `.vscode/`: the folder where local path are stored.
+  > stored.
 
 ### [notebooks](notebooks):
 
-- `notebooks`: a jupyter notebook for preprocessing the data.
+- > `notebooks`: a jupyter notebook for preprocessing the data.
 
 ### [scripts](scripts):
 
-- `scripts/`: folder where modules are stored.
+- > `scripts/`: folder where modules are stored.
 
 ### [tests](tests):
 
-- `tests/`: the folder containing unit tests for the scripts.
+- > `tests/`: the folder containing unit tests for the scripts.
 
 ### root folder
 
