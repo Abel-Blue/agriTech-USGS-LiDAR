@@ -35,6 +35,8 @@
   - [root folder](#root-folder)
 - [Installation guide](#installation-guide)
 
+<hr>
+
 ## Introduction
 
 > <p>We are very interested in how water flows through a maize farm field. This knowledge will help us improve our research on new agricultural products being tested on farms.</p>
@@ -88,6 +90,8 @@
 - `setup.py`: a configuration file for installing the scripts as a package.
 - `README.md`: Markdown text with a brief explanation of the project and the repository structure.
 
+<hr>
+
 # <a name='Installation guide'></a>Installation guide
 
 ### <a name='conda'></a>Conda Enviroment
@@ -104,6 +108,8 @@ git clone https://github.com/Abel-Blue/agriTech-USGS-LiDAR
 cd agriTech-USGS-LiDAR
 sudo python3 setup.py install
 ```
+
+<hr>
 
 # <a name='license'></a>License
 
