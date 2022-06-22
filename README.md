@@ -25,17 +25,15 @@
 
 ## Table of Contents
 
-- [USGS-LIDAR Data](#USGS-LIDAR-Data)
-
-  - [Introduction](##Introduction)
-  - [Project Structure](#project-structure)
-    - [data](#data)
-    - [notebooks](#notebooks)
-    - [scripts](#scripts)
-    - [tests](#tests)
-    - [logs](#logs)
-    - [root folder](#root-folder)
-  - [Installation guide](#installation-guide)
+- [Introduction](##Introduction)
+- [Project Structure](#project-structure)
+  - [data](#data)
+  - [notebooks](#notebooks)
+  - [scripts](#scripts)
+  - [tests](#tests)
+  - [logs](#logs)
+  - [root folder](#root-folder)
+- [Installation guide](#installation-guide)
 
 ## Introduction
 
