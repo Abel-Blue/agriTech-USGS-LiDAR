@@ -52,36 +52,35 @@
 
 ### [images](images):
 
-- > `images/` the folder where all snapshot for the project are stored.
+- `images/` the folder where all snapshot for the project are stored.
 
 ### [logs](logs):
 
-- > `logs/` the folder where script logs are stored.
+- `logs/` the folder where script logs are stored.
 
 ### [data](data):
 
-- > `data/` the folder where the dataset files are stored.
+- `data/` the folder where the dataset files are stored.
 
 ### [.github](.github):
 
-- > `.github/`: the folder where github actions and unit-tests are integrated.
+- `.github/`: the folder where github actions and unit-tests are integrated.
 
 ### [.vscode](.vscode):
 
-- > `.vscode/`: the folder where local path are stored.
-  > stored.
+- `.vscode/`: the folder where local path are stored.
 
 ### [notebooks](notebooks):
 
-- > `notebooks`: a jupyter notebook for preprocessing the data.
+- `notebooks`: a jupyter notebook for preprocessing the data.
 
 ### [scripts](scripts):
 
-- > `scripts/`: folder where modules are stored.
+- `scripts/`: folder where modules are stored.
 
 ### [tests](tests):
 
-- > `tests/`: the folder containing unit tests for the scripts.
+- `tests/`: the folder containing unit tests for the scripts.
 
 ### root folder
 
