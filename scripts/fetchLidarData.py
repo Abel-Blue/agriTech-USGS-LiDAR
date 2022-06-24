@@ -10,7 +10,7 @@ class Lidar_Data_Fetch:
     a pipeline description in the form of JSON. A template for the pipeline json file is defined int the root directory (fetch.json file).
     """
 
-    def __init__(self, public_data_url="https://s3-us-west-2.amazonaws.com/usgs-lidar-public/", epsg=26915, fetch_json_path="./data/pipeline.json") -> None:
+    def __init__(self, public_data_url="https://s3-us-west-2.amazonaws.com/usgs-lidar-public/", epsg=26915, fetch_json_path="../data/pipeline.json") -> None:
         """This method is used to instantiate the class
 
         Args:
@@ -27,8 +27,8 @@ class Lidar_Data_Fetch:
         self.output_epsg = epsg
 
         # todo if folder not exist create folder structure
-        self.out_put_laz_path = "./data/laz/temp.laz"
-        self.out_put_tif_path = "./data/tif/temp.tif"
+        self.out_put_laz_path = "../data/laz/temp.laz"
+        self.out_put_tif_path = "../data/tif/temp.tif"
 
     def __readFetchJson(self, path: str) -> dict:
         """This method reads json file using python json lib.
@@ -95,9 +95,7 @@ class Lidar_Data_Fetch:
 
         fetch_json['pipeline'][0]['filename'] = full_dataset_path
         fetch_json['pipeline'][0]['bounds'] = boundaries
-
         fetch_json['pipeline'][1]['polygon'] = polygon_input
-
         fetch_json['pipeline'][6]['out_srs'] = f'EPSG:{self.output_epsg}'
 
 #         fetch_json['pipeline'][7]['filename'] = self.out_put_laz_path
@@ -130,11 +128,11 @@ class Lidar_Data_Fetch:
     def __createDataFolderStruct(self):
         """This method creates a data/laz and data/tif dir if not exist
         """
-        if (not os.path.isdir('./data')):
-            os.mkdir("./data")
-            os.mkdir("./data/laz/")
-            os.mkdir("./data/tif/")
-        if (not os.path.isdir('./data/laz')):
-            os.mkdir("./data/laz/")
-        if (not os.path.isdir('./data/tif')):
-            os.mkdir("./data/tif/")
+        if (not os.path.isdir('../data')):
+            os.mkdir("../data")
+            os.mkdir("../data/laz/")
+            os.mkdir("../data/tif/")
+        if (not os.path.isdir('../data/laz')):
+            os.mkdir("../data/laz/")
+        if (not os.path.isdir('../data/tif')):
+            os.mkdir("../data/tif/")
