@@ -1,1 +1,0 @@
-# agriTech-USGS-LiDAR Data
