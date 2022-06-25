@@ -2,14 +2,13 @@ import geopandas as gpd
 import os
 import pdal
 import json
+from boundary import Boundaries
 from shapely.geometry import Polygon, Point
+import sys
+sys.path.insert(0,'../scripts/')
 
 class Lidar_Data_Fetch:
-    """This class is used to fetch lidar elevation data points from a public data file ("https://s3-us-west-2.amazonaws.com/usgs-lidar-public/").
-    It uses pdal.io pipeline (https://pdal.io/) to fetch, translate and manipulate cloud datapoints under the hood. the pdal.io pipeline expects
-    a pipeline description in the form of JSON. A template for the pipeline json file is defined int the root directory (fetch.json file).
-    """
-
+   
     def __init__(self, public_data_url="https://s3-us-west-2.amazonaws.com/usgs-lidar-public/", epsg=26915, fetch_json_path="../data/pipeline.json") -> None:
         """This method is used to instantiate the class
 
@@ -20,22 +19,16 @@ class Lidar_Data_Fetch:
         """
         self.public_data_url = public_data_url
         self.fetch_json_path = fetch_json_path
-
-        self.__createDataFolderStruct()
-
         self.input_epsg = 3857
         self.output_epsg = epsg
-
         # todo if folder not exist create folder structure
         self.out_put_laz_path = "../data/laz/temp.laz"
         self.out_put_tif_path = "../data/tif/temp.tif"
 
-    def __readFetchJson(self, path: str) -> dict:
+    def readFetchJson(self, path: str) -> dict:
         """This method reads json file using python json lib.
-
         Args:
             path (str): path for the json file
-
         Returns:
             dict: a dictionary object of the parsed json file
         """
@@ -43,9 +36,8 @@ class Lidar_Data_Fetch:
             with open(path, 'r') as json_file:
                 dict_obj = json.load(json_file)
             return dict_obj
-
         except FileNotFoundError as e:
-            print('FETCH_JSON_FILE_NOT_FOUND')
+            print(e)
 
     def get_polygon_boundaries(self, polygon: Polygon) -> tuple:
         """This method is used to calculate rectangular bounds of a given polygon and returns a string representation of the calculated bounds in a '({[minx, maxx]},{[miny,maxy]})' format (i.e the format our pdal pipeline's reader.ept (https://pdal.io/stages/readers.ept.html#readers-ept) expects. example ([-8242669, -8242529], [4966549, 4966674])).
@@ -58,15 +50,10 @@ class Lidar_Data_Fetch:
             tuple: returns a 2 element tuple in which the first is  a string representation of the calculated bounds in a '({[minx, maxx]},{[miny,maxy]})' format and the second is a string format of the given polygon in a format that pdal pipeline's  filters.crop opreation expects. i.e POLYGON((0 0, 5000 10000, 10000 0, 0 0))
         """
         polygon_df = gpd.GeoDataFrame([polygon], columns=['geometry'])
-
         polygon_df.set_crs(epsg=self.output_epsg, inplace=True)
-        polygon_df['geometry'] = polygon_df['geometry'].to_crs(
-            epsg=self.input_epsg)
-
+        polygon_df['geometry'] = polygon_df['geometry'].to_crs(epsg=self.input_epsg)
         minx, miny, maxx, maxy = polygon_df['geometry'][0].bounds
-
         polygon_input = 'POLYGON(('
-
         xcord, ycord = polygon_df['geometry'][0].exterior.coords.xy
         for x, y in zip(list(xcord), list(ycord)):
             polygon_input += f'{x} {y}, '
@@ -86,7 +73,7 @@ class Lidar_Data_Fetch:
             pdal.Pipeline: returns a prepared pdal pipeline object
         """
 
-        fetch_json = self.__readFetchJson(self.fetch_json_path)
+        fetch_json = self.readFetchJson(self.fetch_json_path)
         # BOUND = "([-10425171.94, -10423171.94], [5164494.71, 5166494.71])"
 
         boundaries, polygon_input = self.get_polygon_boundaries(polygon)
@@ -95,7 +82,9 @@ class Lidar_Data_Fetch:
 
         fetch_json['pipeline'][0]['filename'] = full_dataset_path
         fetch_json['pipeline'][0]['bounds'] = boundaries
+
         fetch_json['pipeline'][1]['polygon'] = polygon_input
+
         fetch_json['pipeline'][6]['out_srs'] = f'EPSG:{self.output_epsg}'
 
 #         fetch_json['pipeline'][7]['filename'] = self.out_put_laz_path
@@ -124,15 +113,3 @@ class Lidar_Data_Fetch:
             return pipeline.arrays, self.output_epsg
         except RuntimeError as e:
             print(e)
-
-    def __createDataFolderStruct(self):
-        """This method creates a data/laz and data/tif dir if not exist
-        """
-        if (not os.path.isdir('../data')):
-            os.mkdir("../data")
-            os.mkdir("../data/laz/")
-            os.mkdir("../data/tif/")
-        if (not os.path.isdir('../data/laz')):
-            os.mkdir("../data/laz/")
-        if (not os.path.isdir('../data/tif')):
-            os.mkdir("../data/tif/")
