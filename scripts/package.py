@@ -4,7 +4,7 @@ from elevation import ElevationExtractor
 from shapely.geometry import box, Point, Polygon
 
 REGION = "IA_FullState"
-PUBLIC_DATA_URL = "https://s3-us-west-2.amazonaws.com/usgs-lidar-public/"
+PUBLIC_DATA_URL = "http://s3-us-west-2.amazonaws.com/usgs-lidar-public/"
 epsg = 4326
 
 if __name__ == "__main__":

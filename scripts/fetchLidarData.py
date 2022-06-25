@@ -12,7 +12,7 @@ sys.path.insert(0, '../logs/')
 sys.path.append(os.path.abspath(os.path.join('..')))
 from log import App_Logger
 
-app_logger = App_Logger("../logs/fetchLidarData.log").get_app_logger()
+app_logger = App_Logger("logs/fetchLidarData.log").get_app_logger()
 
 class Lidar_Data_Fetch:
    
@@ -32,7 +32,7 @@ class Lidar_Data_Fetch:
         self.out_put_laz_path = "../data/laz/temp.laz"
         self.out_put_tif_path = "../data/tif/temp.tif"
         self.logger = App_Logger(
-            "../logs/fetchLidarData.log").get_app_logger()
+            "logs/fetchLidarData.log").get_app_logger()
 
     def readFetchJson(self, path: str) -> dict:
         """This method reads json file using python json lib.
@@ -85,9 +85,10 @@ class Lidar_Data_Fetch:
 
         fetch_json = self.readFetchJson(self.fetch_json_path)
         boundaries, polygon_input = self.get_polygon_boundaries(polygon)
-        full_dataset_path = f"{self.public_data_url}{region}/ept.json"
+        full_dataset_path = "http://s3-us-west-2.amazonaws.com/usgs-lidar-public/IA_FullState/ept.json"
+        # full_dataset_path = f"{self.public_data_url}{region}/ept.json"
 
-        fetch_json['pipeline'][0]['filename'] = full_dataset_path
+        # fetch_json['pipeline'][0]['filename'] = full_dataset_path
         fetch_json['pipeline'][0]['bounds'] = boundaries
         fetch_json['pipeline'][1]['polygon'] = polygon_input
         fetch_json['pipeline'][6]['out_srs'] = f'EPSG:{self.output_epsg}'

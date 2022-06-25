@@ -7,7 +7,7 @@ sys.path.insert(0, '../logs/')
 sys.path.append(os.path.abspath(os.path.join('..')))
 from log import App_Logger
 
-app_logger = App_Logger("../logs/boundary.log").get_app_logger()
+app_logger = App_Logger("logs/boundary.log").get_app_logger()
 
 class Boundaries:
     """A class represntation of a rectangular bound
@@ -20,7 +20,7 @@ class Boundaries:
         self.ymax = ymax
         self.xmax = xmax
         self.logger = App_Logger(
-            "../logs/boundary.log").get_app_logger()
+            "logs/boundary.log").get_app_logger()
         pass
 
     def getBounds(self) -> tuple:
