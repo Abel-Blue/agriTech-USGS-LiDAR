@@ -4,8 +4,15 @@ import pdal
 import json
 from boundary import Boundaries
 from shapely.geometry import Polygon, Point
-import sys
-sys.path.insert(0,'../scripts/')
+import pandas as pd
+import numpy as np
+import sys, os
+sys.path.insert(0, '../scripts/')
+sys.path.insert(0, '../logs/')
+sys.path.append(os.path.abspath(os.path.join('..')))
+from log import App_Logger
+
+app_logger = App_Logger("../logs/fetchLidarData.log").get_app_logger()
 
 class Lidar_Data_Fetch:
    
@@ -24,6 +31,8 @@ class Lidar_Data_Fetch:
         # todo if folder not exist create folder structure
         self.out_put_laz_path = "../data/laz/temp.laz"
         self.out_put_tif_path = "../data/tif/temp.tif"
+        self.logger = App_Logger(
+            "../logs/fetchLidarData.log").get_app_logger()
 
     def readFetchJson(self, path: str) -> dict:
         """This method reads json file using python json lib.
@@ -35,6 +44,7 @@ class Lidar_Data_Fetch:
         try:
             with open(path, 'r') as json_file:
                 dict_obj = json.load(json_file)
+            self.logger.info(f"Reading Fetched Json: {path}")
             return dict_obj
         except FileNotFoundError as e:
             print(e)
@@ -59,7 +69,7 @@ class Lidar_Data_Fetch:
             polygon_input += f'{x} {y}, '
         polygon_input = polygon_input[:-2]
         polygon_input += '))'
-
+        self.logger.info(f"Getting polygon boundary: {polygon}")
         return f"({[minx, maxx]},{[miny,maxy]})", polygon_input
 
     def getPipeline(self, region: str, polygon: Polygon):
@@ -74,24 +84,16 @@ class Lidar_Data_Fetch:
         """
 
         fetch_json = self.readFetchJson(self.fetch_json_path)
-        # BOUND = "([-10425171.94, -10423171.94], [5164494.71, 5166494.71])"
-
         boundaries, polygon_input = self.get_polygon_boundaries(polygon)
-
         full_dataset_path = f"{self.public_data_url}{region}/ept.json"
 
         fetch_json['pipeline'][0]['filename'] = full_dataset_path
         fetch_json['pipeline'][0]['bounds'] = boundaries
-
         fetch_json['pipeline'][1]['polygon'] = polygon_input
-
         fetch_json['pipeline'][6]['out_srs'] = f'EPSG:{self.output_epsg}'
 
-#         fetch_json['pipeline'][7]['filename'] = self.out_put_laz_path
-#         fetch_json['pipeline'][8]['filename'] = self.out_put_tif_path
-
         pipeline = pdal.Pipeline(json.dumps(fetch_json))
-
+        self.logger.info(f"Getting pipeline with: {region} and {polygon}")
         return pipeline
 
     def runPipeline(self, region: str, polygon: Polygon):
@@ -110,6 +112,7 @@ class Lidar_Data_Fetch:
             pipeline.execute()
             metadata = pipeline.metadata
             log = pipeline.log
+            self.logger.info(f"Run pipeline from: {region}")
             return pipeline.arrays, self.output_epsg
         except RuntimeError as e:
             print(e)
