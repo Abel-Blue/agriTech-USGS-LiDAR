@@ -22,6 +22,4 @@ if __name__ == "__main__":
 
     ee = ElevationExtractor(crs_epgs=epsg)
     df = ee.get_elevetion(data)
-
-    print(df.info())
-    print(df)
+    df.to_csv("../data/meta.csv")
