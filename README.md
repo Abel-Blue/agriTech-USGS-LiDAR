@@ -98,12 +98,14 @@
 ```bash
 conda create --name mlenv python==3.8.1
 conda activate mlenv
+conda install -c conda-forge pdal python-pdal gdal
+conda install geopandas
 ```
 
 then
 
 ```bash
-git clone https://github.com/Abel-Blue/agriTech-USGS-LiDAR
+git clone https://github.com/Abel-Blue/agriTech-USGS-LiDAR.git
 cd agriTech-USGS-LiDAR
 sudo python3 setup.py install
 ```
