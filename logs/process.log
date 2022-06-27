@@ -1,0 +1,33 @@
+2022-06-27 16:57:29,289 : INFO : log : Colums with missing values: ['floats']
+2022-06-27 16:57:29,289 : INFO : log : Colums with missing values: ['floats']
+2022-06-27 16:57:29,289 : INFO : log : Colums with missing values: ['floats']
+2022-06-27 16:57:29,294 : INFO : log : Converted to numbers
+2022-06-27 16:57:29,294 : INFO : log : Converted to numbers
+2022-06-27 16:57:29,294 : INFO : log : Converted to numbers
+2022-06-27 16:57:29,294 : INFO : log : Converted to numbers
+2022-06-27 16:57:29,295 : INFO : log : Showing coloumn names
+2022-06-27 16:57:29,295 : INFO : log : Showing coloumn names
+2022-06-27 16:57:29,295 : INFO : log : Showing coloumn names
+2022-06-27 16:57:29,295 : INFO : log : Showing coloumn names
+2022-06-27 16:57:29,295 : INFO : log : Showing coloumn names
+2022-06-27 16:57:29,325 : INFO : log : Dropped duplicates: Int64Index([], dtype='int64')
+2022-06-27 16:57:29,325 : INFO : log : Dropped duplicates: Int64Index([], dtype='int64')
+2022-06-27 16:57:29,325 : INFO : log : Dropped duplicates: Int64Index([], dtype='int64')
+2022-06-27 16:57:29,325 : INFO : log : Dropped duplicates: Int64Index([], dtype='int64')
+2022-06-27 16:57:29,325 : INFO : log : Dropped duplicates: Int64Index([], dtype='int64')
+2022-06-27 16:57:29,325 : INFO : log : Dropped duplicates: Int64Index([], dtype='int64')
+2022-06-27 16:57:29,328 : INFO : log : Showing data information
+2022-06-27 16:57:29,328 : INFO : log : Showing data information
+2022-06-27 16:57:29,328 : INFO : log : Showing data information
+2022-06-27 16:57:29,328 : INFO : log : Showing data information
+2022-06-27 16:57:29,328 : INFO : log : Showing data information
+2022-06-27 16:57:29,328 : INFO : log : Showing data information
+2022-06-27 16:57:29,328 : INFO : log : Showing data information
+2022-06-27 16:57:29,377 : INFO : log : Showing datatypes
+2022-06-27 16:57:29,377 : INFO : log : Showing datatypes
+2022-06-27 16:57:29,377 : INFO : log : Showing datatypes
+2022-06-27 16:57:29,377 : INFO : log : Showing datatypes
+2022-06-27 16:57:29,377 : INFO : log : Showing datatypes
+2022-06-27 16:57:29,377 : INFO : log : Showing datatypes
+2022-06-27 16:57:29,377 : INFO : log : Showing datatypes
+2022-06-27 16:57:29,377 : INFO : log : Showing datatypes
